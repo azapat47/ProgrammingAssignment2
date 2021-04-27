@@ -1,16 +1,21 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Cached Object for Inverse Matrix
+## Assignment 2 - R Programming Course
 
-## Write a short comment describing this function
-
+## CacheMatrix Object with getter and setter for
+## inverse Matrix (prevents unecessary recalculations)
 makeCacheMatrix <- function(x = matrix()) {
+  # Initializes the Inverse Matrix before calculations
   inverse <- NULL
+  
+  # Setter for matrix X
   set <- function(y) {
     x <<- y
     inverse <<- NULL
   }
   
+  # Getter for Matrix X
   get <- function() x
+  # Setter and Getter for the Inverse
   set.inverse <- function(i) inverse <<- i
   get.inverse <- function() inverse
   list(set = set, get = get,
@@ -18,9 +23,9 @@ makeCacheMatrix <- function(x = matrix()) {
        get.inverse = get.inverse)
 }
 
-
-## Write a short comment describing this function
-
+# Calculates Inverse Matrix only if it was
+# not calculated previously and stores it
+# as part of the object
 cacheSolve <- function(x, ...) {
   inverse <- x$get.inverse()
   if(!is.null(inverse)){
